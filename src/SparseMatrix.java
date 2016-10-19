@@ -1,7 +1,6 @@
 package src;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
@@ -9,20 +8,24 @@ import java.util.Map;
 
 public class SparseMatrix extends Matrix {
 
-    String inF;
+    public String inF;
 
-    String outF;
+    public int nRow;
 
-    public SparseMatrix(String inF, String outF){
-        this.inF = inF;
-        this.outF = outF;
+    public int nCol;
+
+    double[][] matrix;
+
+    public SparseMatrix(String in){
+        inF = in;
+        int nRow = CountRow(inF);
+        int nCol = CountCol(inF);
+        double[][] matrix = setMatrix(nRow, nCol, inF);
     }
 
-    public int nRow = CountRow(inF);
-
-    public int nCol = CountCol(inF);
-
-    public double[][] matrix = setMatrix(nRow, nCol, inF);
+    public String Test (){
+        return inF;
+    }
 
     public void multSpSp(SparseMatrix other) {
         if (nCol != other.nRow) throw new IllegalArgumentException("Dimensions disagree");
@@ -45,7 +48,7 @@ public class SparseMatrix extends Matrix {
                 }
             }
         }
-        printMatrix(nRow, other.nCol, result, "mul" + outF + other.outF);
+        printMatrix(nRow, other.nCol, result, "mul" + inF.substring(0, inF.length() - 4) + other.inF);
     }
 
     public void multSD(DenseMatrix other) {
@@ -58,6 +61,6 @@ public class SparseMatrix extends Matrix {
                 }
             }
         }
-        printMatrix(nRow, other.nCol, result, "mulSD" + outF + other.outF);
+        printMatrix(nRow, other.nCol, result, "mulSD" + inF.substring(0, inF.length() - 4) + other.inF);
     }
 }

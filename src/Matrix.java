@@ -42,7 +42,7 @@ public abstract class Matrix {
         return n;
     }
 
-    public double[][] setMatrix(int n, int m, String fileName){
+    public double[][] setMatrix(int n, int m, String fileName ){
         double[][] matrix = new double[m][n];
         Scanner in = null;
         try {

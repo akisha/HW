@@ -9,14 +9,11 @@ public class DenseMatrix extends Matrix {
 
     String inF;
 
-    String outF;
-
-    DenseMatrix(String inF, String outF){
+    DenseMatrix(String inF){
         this.inF = inF;
-        this.outF = outF;
     }
 
-    public int nRow = 1; //CountRow(inF);
+    public int nRow = 2; //CountRow(inF);
 
     public int nCol = CountCol(inF);
 
@@ -43,7 +40,7 @@ public class DenseMatrix extends Matrix {
                 }
             }
         }
-        printMatrix(nRow, other.nCol, result, "mul" + outF + other.outF);
+        printMatrix(nRow, other.nCol, result, "mul" + inF.substring(0, inF.length() - 4) + other.inF);
     }
 
     public void multDD(DenseMatrix other) {
@@ -56,6 +53,6 @@ public class DenseMatrix extends Matrix {
                 }
             }
         }
-        printMatrix(nRow, other.nCol, result, "mulSD" + outF + other.outF);
+        printMatrix(nRow, other.nCol, result, "mulSD" + inF.substring(0, inF.length() - 4) + other.inF);
     }
 }
