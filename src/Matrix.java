@@ -73,4 +73,13 @@ public abstract class Matrix {
             }
         }
     }
+
+    public void printMatrixCons(int n, int m, double[][] matrix){
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                System.out.print(matrix[i][j] + "  ");
+                if (j == m - 1) System.out.println();
+            }
+        }
+    }
  }

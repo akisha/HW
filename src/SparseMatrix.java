@@ -1,8 +1,5 @@
 package src;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,15 +13,11 @@ public class SparseMatrix extends Matrix {
 
     double[][] matrix;
 
-    public SparseMatrix(String in){
+    public SparseMatrix(String in) {
         inF = in;
         int nRow = CountRow(inF);
         int nCol = CountCol(inF);
         double[][] matrix = setMatrix(nRow, nCol, inF);
-    }
-
-    public String Test (){
-        return inF;
     }
 
     public void multSpSp(SparseMatrix other) {
@@ -48,7 +41,8 @@ public class SparseMatrix extends Matrix {
                 }
             }
         }
-        printMatrix(nRow, other.nCol, result, "mul" + inF.substring(0, inF.length() - 4) + other.inF);
+       //printMatrix(nRow, other.nCol, result, "mul" + inF.substring(0, inF.length() - 4) + other.inF);
+        printMatrixCons(nRow, other.nCol, result);
     }
 
     public void multSD(DenseMatrix other) {
@@ -61,6 +55,7 @@ public class SparseMatrix extends Matrix {
                 }
             }
         }
-        printMatrix(nRow, other.nCol, result, "mulSD" + inF.substring(0, inF.length() - 4) + other.inF);
+        //printMatrix(nRow, other.nCol, result, "mulSD" + inF.substring(0, inF.length() - 4) + other.inF);
+        printMatrixCons(nRow, other.nCol, result);
     }
 }

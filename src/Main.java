@@ -2,10 +2,12 @@ package src;
 
 public class Main {
     public static void main(String[] args) {
-        SparseMatrix mS1 = new SparseMatrix("S1.txt");
-        SparseMatrix mS2 = new SparseMatrix("S2.txt");
-        mS1.multSpSp(mS2);
-        String t = mS1.Test();
-        System.out.println(t);
+        DenseMatrix d1 = new DenseMatrix("D1.txt");
+        DenseMatrix d2 = new DenseMatrix("D2.txt");
+        //d1.multDD(D2);
+        SparseMatrix s1 = new SparseMatrix("S1.txt");
+        d1.multDS(s1);
+        System.out.println(d1.CountRow("D1.txt"));
+        System.out.println(s1.CountCol("S1.txt"));
     }
 }

@@ -1,7 +1,5 @@
 package src;
 
-import src.Matrix;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,15 +7,18 @@ public class DenseMatrix extends Matrix {
 
     String inF;
 
-    DenseMatrix(String inF){
+    public int nRow;
+
+    public int nCol;
+
+    public double[][] matrix;
+
+    public DenseMatrix(String inF){
         this.inF = inF;
+        nRow = CountRow(inF);
+        nCol = CountCol(inF);
+        double[][] matrix = setMatrix(nRow, nCol, inF);
     }
-
-    public int nRow = 2; //CountRow(inF);
-
-    public int nCol = CountCol(inF);
-
-    public double[][] matrix = setMatrix(nRow, nCol, inF);
 
     public void multDS(SparseMatrix other) {
         if (nCol != other.nRow) throw new IllegalArgumentException("Dimensions disagree");
@@ -31,8 +32,8 @@ public class DenseMatrix extends Matrix {
                 }
             }
         }
-        for(int i = 0; i < nRow; i++) {
-            for(int k = 0; k < nCol; k++) {
+        for(int i = 0; i < nRow - 1; i++) {
+            for(int k = 0; k < nCol - 1; k++) {
                 if (matrix[i][k] != 0){
                     for (Integer j: tOther.get(k).keySet()) {
                         result[i][j] += matrix[i][k] * tOther.get(k).get(j);
